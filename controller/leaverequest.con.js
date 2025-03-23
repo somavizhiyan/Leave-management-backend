@@ -11,10 +11,10 @@ const Createleaverequest = async (req, res, next) => {
     if (!createlevreq) {
       return res
         .status(400)
-        .json({ error: "LeaveRequest not created Please try again" });
+        .json({ error: "LeaveRequest not Submitted Please try again" });
     }
 
-    res.status(201).json({ message: "LeaveRequest Created Sucessfully" });
+    res.status(201).json({ message: "Submitted Sucessfully" });
     res.json("entered");
   } catch (error) {
     next(error);
@@ -36,7 +36,7 @@ const Updateleaverequest = async (req, res, next) => {
     const updatelevreq = await LeaveRequest.update(body, {
       where: { id: params?.id },
     });
-    if (updatelevreq) {
+    if (!updatelevreq) {
       return res.status(404).json({ error: "Please Try Again" });
     }
     res.status(201).json({ message: "Updated Successfully" });
@@ -62,7 +62,7 @@ const Deleteleaverequest = async (req, res, next) => {
     if (!deletelevreq) {
       return res.status(400).json({ error: "Please try again" });
     }
-    res.status(201).json({ message: "LeaveRequest Deleted Successfully" });
+    res.status(201).json({ message: "Deleted Successfully" });
   } catch (error) {
     next(error);
   }
